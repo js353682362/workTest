@@ -22,6 +22,7 @@ public class HttpRequestUtil {
         return Long.valueOf(getString(request,paramName));
     }
 
+
     public static Integer getInteger(ServletRequest request,String paramName){
         return Integer.valueOf(getString(request,paramName));
     }
