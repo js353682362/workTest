@@ -17,6 +17,7 @@ import javax.servlet.ServletRequest;
 @RequestMapping({"/common"})
 public class RedirectController {
 
+
     @RequestMapping(value = "/toPage",method = RequestMethod.GET)
     public String toPage(ServletRequest request){
         return HttpRequestUtil.getValue(request,"toPage");
