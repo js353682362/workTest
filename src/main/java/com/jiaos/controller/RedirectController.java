@@ -1,11 +1,12 @@
 package com.jiaos.controller;
 
-import com.jiaos.common.HttpRequestUtil;
+import javax.servlet.ServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.ServletRequest;
+import com.jiaos.common.HttpRequestUtil;
 
 /**
  * @（#）:RedirectController.java
@@ -14,13 +15,12 @@ import javax.servlet.ServletRequest;
  * @version: Version 1.0
  */
 @Controller
-@RequestMapping({"/common"})
+@RequestMapping({ "/common" })
 public class RedirectController {
 
-
-    @RequestMapping(value = "/toPage",method = RequestMethod.GET)
-    public String toPage(ServletRequest request){
-        return HttpRequestUtil.getValue(request,"toPage");
+    @RequestMapping(value = "/toPage", method = RequestMethod.GET)
+    public String toPage(ServletRequest request) {
+        return HttpRequestUtil.getValue(request, "toPage");
     }
 
 }
