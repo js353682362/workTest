@@ -9000,7 +9000,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var m = this.transform;
 	        var dpr = ctx.dpr || 1;
 	        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-	    }
+	    };
 
 	    var tmpTransform = [];
 
@@ -10693,7 +10693,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 
-	        return;
+
 	    }
 
 	    /**
@@ -10965,7 +10965,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         */
 	        module.exports = function() {
 	            if (config.debugMode === 0) {
-	                return;
+
 	            }
 	            else if (config.debugMode == 1) {
 	                for (var k in arguments) {
@@ -16612,7 +16612,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                roundRectHelper.buildPath(ctx, shape);
 	            }
 	            ctx.closePath();
-	            return;
+
 	        }
 	    });
 
@@ -41975,7 +41975,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                shape.y - mathSin(angle) * width
 	            );
 	            ctx.lineTo(x, y);
-	            return;
+
 	        }
 	    });
 
@@ -50937,7 +50937,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    } catch (e) {
 	        cachedClearTimeout = defaultClearTimeout;
 	    }
-	} ())
+	} ());
 	function runTimeout(fun) {
 	    if (cachedSetTimeout === setTimeout) {
 	        //normal enviroments in sane situations
@@ -68133,4 +68133,3 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ }
 /******/ ])
 });
-;

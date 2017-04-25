@@ -1,81 +1,222 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
+<html>
 <head>
-    <title>ces</title>
     <script type="text/javascript" src="${ctx}/static/jquery-3.1.1.min.js"></script>
-    <link href="${ctx}/static/css/image-style.css" type="text/css" rel="stylesheet" />
     <style>
-        .container {
-            width: 600px;
-            height: 300px;
-            margin: 300px 1000px;
-            position: fixed;
-            /*background: rgba(138, 229, 153, 0.85);*/
-            /*background: rgba(19, 70, 112, 0.4) none repeat scroll 0 0;*/
-            background-image: url('${ctx}/static/img/tg-chang1ea8a2.png');
-            background-repeat: no-repeat;
-            background-position: -14px 0px;
-            background-size: 316px 299px;
-            box-shadow: 0px 1px 3px;
-            border-radius: 15px;
-        }
-
-        .putInfo {
-            border-radius: 15px;
-            width: 200px;
-            padding-left: 350px;
-            padding-top: 30px;
-        }
-
-        .loginName {
-
-        }
-
-        .password {
-            margin-top: 65px;
-        }
-
-        .input {
-            width: 185px;
-            height: 40px;
-            border-radius: 8px;
+        #popBox{
             position: absolute;
+            display:none;
+            width:300px;
+            height:200px;
+            left:40%;
+            top:20%;
+            z-index:11;
+            background:#B8F764;
+            box-shadow:0 5px 15px rgba(0,0,0,.5);
         }
 
-        .button {
-            height: 40px;
-            width: 40%;
-            margin-top: 70%;
-            margin-left: 70%;
+        #popLayer{
+            position: absolute;
+            display:none;
+            left:0;
+            top:0;
+            z-index:10;
+            background:#DCDBDC;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=80);/*只支持IE6789*/
         }
+
+        body,div,ul,li{
+
+            margin:0 auto;
+
+            padding:0;
+
+        }
+
+        body{
+
+            font:12px "宋体";
+
+            text-align:center;
+
+        }
+
+        a:link{
+
+            color:#00F;
+
+            text-decoration:none;
+
+        }
+
+        a:visited {
+
+            color: #00F;
+
+            text-decoration:none;
+
+        }
+
+        a:hover {
+
+            color: #c00;
+
+            text-decoration:underline;
+
+        }
+
+        ul{
+
+            list-style:none;
+
+        }
+
+        .main{
+
+            clear:both;
+
+            padding:8px;
+
+            text-align:center;
+
+        }
+
+        /*第一种形式*/
+
+        #tabs0 {
+
+            height: 200px;
+
+            width: 400px;
+
+            border: 1px solid #cbcbcb;
+
+            background-color: #f2f6fb;
+
+        }
+
+        .menu0{
+            width: 400px;
+        }
+
+        .menu0 li{
+
+            display:block;
+
+            float: left;
+
+            padding: 4px 0;
+
+            width:100px;
+
+            text-align: center;
+
+            cursor:pointer;
+
+            background: #FFFFff;
+
+        }
+
+        .menu0 li.hover{
+
+            background: #f2f6fb;
+
+        }
+
+        #main0 ul{
+
+            display: none;
+
+        }
+
+        #main0 ul.block{
+
+            display: block;
+
+        }
+
     </style>
-<body style="line-height: 20px; height: 100%; margin: 0;">
-<img src="${ctx}/static/img/login_bg.png" class="img_bg"/>
-<form action="login" id="loginForm" method="post">
-    <div class="container">
-        <div style="font-size: 20px;margin-left: 400px;margin-top: 50px">请登录</div>
-        <div class="putInfo">
-            <input class="input loginName" id="loginName" type="text" placeholder="请输入登陆名"/>
-            <input class="input password" id="password" type="password" placeholder="请输入密码"/>
-        </div>
-        <input type="submit" id="login-button" value="提交" class="button"/>
+</head>
+<body>
+<input type="button" name="popBox" value="弹出层" onclick="popBox()"/>
+<div id="popLayer"></div>
+<div id="popBox">
+    <div><a href="javascript:void(0)" onclick="closeBox()">关闭</a> </div>
+    <div>弹出框</div>
+</div>
+
+<br />
+
+<br />
+
+<!--第一种形式-->
+
+<div id="tabs0">
+
+    <ul class="menu0" id="menu0">
+
+        <li onclick="setTab(0,0)" class="hover">新闻</li>
+
+        <li onclick="setTab(0,1)">评论</li>
+
+        <li onclick="setTab(0,2)">技术</li>
+
+        <li onclick="setTab(0,3)">点评</li>
+
+    </ul>
+
+    <div class="main" id="main0">
+
+        <ul class="block"><li>新闻列表</li></ul>
+
+        <ul><li>评论列表</li></ul>
+
+        <ul><li>技术列表</li></ul>
+
+        <ul><li>点评列表</li></ul>
+
     </div>
-</form>
-</body>
+
+</div>
+
+<br/>
+
 <script>
-    var LoginData = {};
-    var LoginUtils = {
-        init: function () {
-            LoginUtils.bindEvent();
-        },
-        bindEvent: function () {
+    function setTab(m,n){
+
+        var tli=document.getElementById("menu"+m).getElementsByTagName("li");
+
+        var mli=document.getElementById("main"+m).getElementsByTagName("ul");
+
+        for(i=0;i<tli.length;i++){
+
+            tli[i].className=i==n?"hover":"";
+
+            mli[i].style.display=i==n?"block":"none";
 
         }
-    };
-    $(document).ready(function () {
-        LoginUtils.init();
-    })
+    }
+
+    function popBox(){
+        $("#popLayer").width(document.body.scrollWidth);
+        $("#popLayer").height(document.body.scrollHeight);
+
+        $("#popLayer").show();
+        $("#popBox").show();
+    }
+
+    function closeBox(){
+        $("#popLayer").hide();
+        $("#popBox").hide();
+    }
+
+    setTimeout(function () {
+        alert("123");
+    },200)
 </script>
+</body>
 </html>
