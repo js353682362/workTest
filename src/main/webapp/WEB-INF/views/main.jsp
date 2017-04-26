@@ -217,6 +217,31 @@
     setTimeout(function () {
         alert("123");
     },200)
+
+
+    //    var xmlObj = null;
+    //    window.onload = function () {
+    //        if (window.ActiveXObject) {
+    //            xmlObj = new ActiveXObject("Microsoft.XMLHTTP");
+    //        } else if (window.XMLHttpRequest) {
+    //            xmlObj = new XMLHttpRequest();
+    //        } else {
+    //            return;
+    //        }
+    //        xmlObj.open('POST', 'getMenus', false);
+    //        xmlObj.onreadystatechange = showResult;
+    //        xmlObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //        xmlObj.send("fname=Bill&lname=Gates");
+    //    };
+    //
+    //    function showResult() {
+    //        if (xmlObj.readyState == 4) {
+    //            if (xmlObj.status == 200) {
+    //                alert(xmlObj.responseText);
+    //            }
+    //        }
+    //    }
+
 </script>
 </body>
 </html>
